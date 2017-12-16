@@ -16,7 +16,7 @@ module.exports.searchForLocations = function (query) {
     }
 
     return new Promise((resolve, reject) => {
-        api.get(`${API_URL}location/queryWeb?q=uni`).then(response => {
+        api.get(`${API_URL}location/queryWeb?q=${encodeURI(query)}`).then(response => {
             const locations = response.data.locations.filter(loc => loc.type === 'station').map(loc => {
                 return {
                     id: loc.id,
@@ -27,6 +27,20 @@ module.exports.searchForLocations = function (query) {
             });
 
             resolve(locations);
+        }).catch(err => {
+            reject(err);
+        });
+    });
+}
+
+module.exports.route = function (from, to, time) {
+    if (from < 0 || to < 0) {
+        throw new Error("from and to params have to be greater than zero");
+    }
+
+    return new Promise((resolve, reject) => {
+        api.get(`${API_URL}routing/?fromStation=${from}&toStation=${to}${time !== undefined ? `&time=${time}` : ''}`).then(response => {
+            resolve(response.data.connectionList);
         }).catch(err => {
             reject(err);
         });
