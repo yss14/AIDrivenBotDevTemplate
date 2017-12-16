@@ -2,7 +2,7 @@
 ## Usage
 ### Search for stations
 ```JavaScript
-const MVGAPI = require('mvg-api');
+const MVGAPI = require('mvgapi');
 
 MVGAPI.searchForLocations('Uni').then(locations => {
     locations.forEach(loc => {
