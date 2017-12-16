@@ -1,4 +1,8 @@
 # Simple MVG API
+## Installation
+```bash
+npm install --save mvgapi
+```
 ## Usage
 ### Search for stations
 ```JavaScript
