@@ -18,3 +18,12 @@ MVGAPI.route(70, 438).then(routes => {
 }).catch(err => {
     console.log(`Ups, an error occured: \n ${err}`);
 });
+
+//Get departures
+MVGAPI.departures(70).then(departures => {
+    departures.forEach(departure => {
+        console.log(`${departure.product.toUpperCase()}${departure.label} at ${new Date(departure.departureTime)} with direction ${departure.destination}`);
+    });
+}).catch(err => {
+    console.log(`Ups, an error occured: \n ${err}`);
+});

@@ -60,3 +60,25 @@ product: string,
 sev: boolean,
 connectionPartType: string
 ```
+
+### Departures
+```JavaScript
+MVGAPI.departures(70).then(departures => {
+    departures.forEach(departure => {
+        console.log(`${departure.product.toUpperCase()}${departure.label} at ${new Date(departure.departureTime)} with direction ${departure.destination}`);
+    });
+}).catch(err => {
+    console.log(`Ups, an error occured: \n ${err}`);
+});
+```
+
+`departures` is an array of `IMVGDeparture` objects
+```TypeScript
+departureId: number,
+departureTime: number,
+destination: string,
+label: string,
+live: boolean,
+product: string,
+sev: boolean
+```

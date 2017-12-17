@@ -47,3 +47,17 @@ module.exports.route = function (from, to, time) {
     });
 }
 
+module.exports.departures = function (stationID) {
+    if (stationID < 0) {
+        throw new Error("stationID has to be greater than zero");
+    }
+
+    return new Promise((resolve, reject) => {
+        api.get(`${API_URL}departure/${stationID}?footway=0`).then(response => {
+            resolve(response.data.departures);
+        }).catch(err => {
+            reject(err);
+        });
+    });
+}
+

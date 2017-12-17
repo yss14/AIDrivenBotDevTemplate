@@ -30,3 +30,15 @@ export interface IMVGRoute {
 }
 
 export function route(from: number, to: number, time?: number): Promise<IMVGRoute[]>;
+
+export interface IMVGDeparture {
+    departureId: number,
+    departureTime: number,
+    destination: string,
+    label: string,
+    live: boolean,
+    product: string,
+    sev: boolean
+}
+
+export function departures(stationID: number): Promise<IMVGDeparture[]>;
